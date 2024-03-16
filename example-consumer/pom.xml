@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.iaimi</groupId>
-            <artifactId>clover-rpc-easy</artifactId>
+            <artifactId>clover-rpc-core</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>

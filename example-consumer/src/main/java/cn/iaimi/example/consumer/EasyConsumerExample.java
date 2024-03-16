@@ -1,8 +1,10 @@
 package cn.iaimi.example.consumer;
 
-import cn.iaimi.clover.clovrpc.proxy.ServiceProxyFactory;
 import cn.iaimi.clover.example.common.model.User;
 import cn.iaimi.clover.example.common.service.UserService;
+import cn.iaimi.cloverrpc.config.RpcConfig;
+import cn.iaimi.cloverrpc.proxy.ServiceProxyFactory;
+import cn.iaimi.cloverrpc.utils.ConfigUtils;
 
 /**
  * @author Clov614
@@ -12,7 +14,8 @@ import cn.iaimi.clover.example.common.service.UserService;
 public class EasyConsumerExample {
 
     public static void main(String[] args) {
-        // todo 需要获取UserService的实现类对象
+        RpcConfig rpc = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+        System.out.println(rpc);
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
         user.setName("Clover614");

@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/example-common/pom.xml" />
         <option value="$PROJECT_DIR$/clover-rpc-easy/pom.xml" />
         <option value="$PROJECT_DIR$/example-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/example-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/clover-rpc-core/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

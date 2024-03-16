@@ -1,8 +1,10 @@
 package cn.iaimi.clover.example.provider;
 
-import cn.iaimi.clover.clovrpc.registry.LocalRegistry;
-import cn.iaimi.clover.clovrpc.server.VertHttpServer;
+
 import cn.iaimi.clover.example.common.service.UserService;
+import cn.iaimi.cloverrpc.RpcApplication;
+import cn.iaimi.cloverrpc.registry.LocalRegistry;
+import cn.iaimi.cloverrpc.server.VertHttpServer;
 
 /**
  * @author Clov614
@@ -14,11 +16,14 @@ import cn.iaimi.clover.example.common.service.UserService;
 public class EasyProviderExample {
 
     public static void main(String[] args) {
+
+        RpcApplication.init();
+
         // 注册服务
         LocalRegistry.register(UserService.class.getName(), UserServiceImpl.class);
 
         // 启动 web 服务
         VertHttpServer httpServer = new VertHttpServer();
-        httpServer.doStart(8080);
+        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
     }
 }
