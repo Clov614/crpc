@@ -1,2 +1,2 @@
 # crpc
-A simple rpc frameword implemented by Java
+A simple rpc framework implemented by Java
