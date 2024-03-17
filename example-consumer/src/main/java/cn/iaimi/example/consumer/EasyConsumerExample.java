@@ -2,9 +2,9 @@ package cn.iaimi.example.consumer;
 
 import cn.iaimi.clover.example.common.model.User;
 import cn.iaimi.clover.example.common.service.UserService;
-import cn.iaimi.cloverrpc.config.RpcConfig;
-import cn.iaimi.cloverrpc.proxy.ServiceProxyFactory;
-import cn.iaimi.cloverrpc.utils.ConfigUtils;
+import cn.iaimi.crpc.config.RpcConfig;
+import cn.iaimi.crpc.proxy.ServiceProxyFactory;
+import cn.iaimi.crpc.utils.ConfigUtils;
 
 /**
  * @author Clov614

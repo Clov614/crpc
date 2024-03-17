@@ -1,10 +1,4 @@
-import cn.hutool.core.io.resource.ResourceUtil;
-import cn.hutool.core.lang.TypeReference;
-import cn.hutool.setting.yaml.YamlUtil;
-import cn.iaimi.cloverrpc.config.RpcConfig;
 import org.junit.Test;
-
-import java.util.Map;
 
 /**
  * @author Clov614

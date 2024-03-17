@@ -1,0 +1,2 @@
+json=cn.iaimi.crpc.serializer.JsonSerializer
+kryo=cn.iaimi.crpc.serializer.KryoSerializer
