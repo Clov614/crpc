@@ -1,5 +1,7 @@
 package cn.iaimi.cloverrpc.proxy;
 
+import cn.iaimi.cloverrpc.RpcApplication;
+
 import java.lang.reflect.Proxy;
 
 /**
@@ -17,9 +19,22 @@ public class ServiceProxyFactory {
      * @return
      */
     public static <T> T getProxy(Class<T> serviceClass) {
+
+        // 根据mock配置决定是否返回mock代理对象
+        if (RpcApplication.getRpcConfig().getMock()) {
+            return getMockProxy(serviceClass);
+        }
+
         return (T) Proxy.newProxyInstance(
                 serviceClass.getClassLoader(),
                 new Class[]{serviceClass},
                 new ServiceProxy());
+    }
+
+    private static <T> T getMockProxy(Class<T> serviceClass) {
+        return (T) Proxy.newProxyInstance(
+                serviceClass.getClassLoader(),
+                new Class[]{serviceClass},
+                new MockServiceProxy());
     }
 }
