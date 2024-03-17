@@ -20,4 +20,6 @@ public class RpcConfig {
     private Integer serverPort = 8080;
 
     private Boolean mock = false;
+
+    private String serializer = "jdk";
 }

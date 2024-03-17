@@ -6,8 +6,8 @@ import cn.iaimi.cloverrpc.RpcApplication;
 import cn.iaimi.cloverrpc.config.RpcConfig;
 import cn.iaimi.cloverrpc.model.RpcRequest;
 import cn.iaimi.cloverrpc.model.RpcResponse;
-import cn.iaimi.cloverrpc.serializer.JdkSerializer;
-
+import cn.iaimi.cloverrpc.serializer.Serializer;
+import cn.iaimi.cloverrpc.serializer.SerializerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -28,7 +28,7 @@ public class ServiceProxy implements InvocationHandler {
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        JdkSerializer serializer = new JdkSerializer();
+        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         RpcRequest rpcRequest = RpcRequest.builder()
                 .serviceName(method.getDeclaringClass().getName())

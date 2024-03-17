@@ -1,0 +1,4 @@
+jdk=cn.iaimi.cloverrpc.serializer.JdkSerializer
+hessian=cn.iaimi.cloverrpc.serializer.HessianSerializer
+json=cn.iaimi.cloverrpc.serializer.JsonSerializer
+kryo=cn.iaimi.cloverrpc.serializer.KryoSerializer
