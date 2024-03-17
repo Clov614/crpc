@@ -14,7 +14,7 @@ import cn.iaimi.cloverrpc.utils.ConfigUtils;
 public class EasyConsumerExample {
 
     public static void main(String[] args) {
-        RpcConfig rpc = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
+        RpcConfig rpc = ConfigUtils.load(RpcConfig.class, "rpc");
         System.out.println(rpc);
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();

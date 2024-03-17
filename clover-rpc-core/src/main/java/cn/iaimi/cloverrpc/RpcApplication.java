@@ -24,7 +24,7 @@ public class RpcApplication {
         RpcConfig newRpcConfig;
 
         try {
-            newRpcConfig = ConfigUtils.loadConfig(RpcConfig.class, RpcConstant.DEFAULT_CONFIG_PREFIX);
+            newRpcConfig = ConfigUtils.load(RpcConfig.class, RpcConstant.DEFAULT_CONFIG_PREFIX);
         } catch (Exception e) {
             newRpcConfig = new RpcConfig();
         }
