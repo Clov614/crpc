@@ -1,7 +1,10 @@
 package cn.iaimi.crpc;
 
+import cn.iaimi.crpc.config.RegistryConfig;
 import cn.iaimi.crpc.config.RpcConfig;
 import cn.iaimi.crpc.constant.RpcConstant;
+import cn.iaimi.crpc.registry.Registry;
+import cn.iaimi.crpc.registry.RegistryFactory;
 import cn.iaimi.crpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +21,11 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, config = {}", newRpcConfig.toString());
+        // 注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
     }
 
     public static void init() {

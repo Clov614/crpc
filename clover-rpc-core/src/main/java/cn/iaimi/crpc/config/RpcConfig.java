@@ -2,6 +2,8 @@ package cn.iaimi.crpc.config;
 
 import lombok.Data;
 
+import javax.annotation.Resource;
+
 /**
  * @author Clov614
  * @version 1.0
@@ -22,4 +24,6 @@ public class RpcConfig {
     private Boolean mock = false;
 
     private String serializer = "jdk";
+
+    private RegistryConfig registryConfig = new RegistryConfig();
 }
