@@ -1,1 +1,2 @@
 etcd=cn.iaimi.crpc.registry.EtcdRegistry
+zookeeper=cn.iaimi.crpc.registry.ZookeeperRegistry
