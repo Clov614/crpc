@@ -1,0 +1,3 @@
+roundRobin=cn.iaimi.crpc.loadbalancer.RoundRobinLoadBalancer
+random=cn.iaimi.crpc.loadbalancer.RandomLoadBalancer
+consistentHash=cn.iaimi.crpc.loadbalancer.ConsistentHashLoadBalancer

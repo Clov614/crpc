@@ -1,5 +1,6 @@
 package cn.iaimi.crpc.config;
 
+import cn.iaimi.crpc.loadbalancer.LoadBalancerKeys;
 import lombok.Data;
 
 import javax.annotation.Resource;
@@ -24,6 +25,8 @@ public class RpcConfig {
     private Boolean mock = false;
 
     private String serializer = "jdk";
+
+    private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
 
     private RegistryConfig registryConfig = new RegistryConfig();
 }
