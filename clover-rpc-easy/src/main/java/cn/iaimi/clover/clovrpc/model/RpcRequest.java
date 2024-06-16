@@ -1,6 +1,5 @@
 package cn.iaimi.clover.clovrpc.model;
 
-import cn.iaimi.clover.clovrpc.serializer.Serializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.io.Serializable;
  * @author Clov614
  * @version 1.0
  * DATE 2024/3/16
- *
+ * <p>
  * RPC请求
  */
 @Data

@@ -9,6 +9,8 @@ import cn.iaimi.crpc.registry.LocalRegistry;
 import cn.iaimi.crpc.registry.Registry;
 import cn.iaimi.crpc.registry.RegistryFactory;
 import cn.iaimi.crpc.server.VertHttpServer;
+import cn.iaimi.crpc.server.tcp.VertxTcpClient;
+import cn.iaimi.crpc.server.tcp.VertxTcpServer;
 
 /**
  * @author Clov614
@@ -42,7 +44,7 @@ public class ProviderExample {
         }
 
         // 启动 web 服务
-        VertHttpServer httpServer = new VertHttpServer();
-        httpServer.doStart(rpcConfig.getServerPort());
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.doStart(8081);
     }
 }

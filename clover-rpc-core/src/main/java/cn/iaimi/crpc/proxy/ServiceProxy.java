@@ -1,23 +1,29 @@
 package cn.iaimi.crpc.proxy;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
+import cn.hutool.core.util.IdUtil;
 import cn.iaimi.crpc.RpcApplication;
 import cn.iaimi.crpc.config.RpcConfig;
-import cn.iaimi.crpc.constant.RpcConstant;
 import cn.iaimi.crpc.model.RpcRequest;
 import cn.iaimi.crpc.model.RpcResponse;
 import cn.iaimi.crpc.model.ServiceMetaInfo;
+import cn.iaimi.crpc.protocol.*;
 import cn.iaimi.crpc.registry.Registry;
 import cn.iaimi.crpc.registry.RegistryFactory;
 import cn.iaimi.crpc.serializer.Serializer;
 import cn.iaimi.crpc.serializer.SerializerFactory;
+import cn.iaimi.crpc.server.tcp.VertxTcpClient;
+import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author Clov614
@@ -45,8 +51,6 @@ public class ServiceProxy implements InvocationHandler {
                 .build();
 
         try {
-            byte[] bodyBytes = serializer.serialize(rpcRequest);
-            byte[] result;
             // 从注册中心获取服务提供者请求地址
             RpcConfig rpcConfig = RpcApplication.getRpcConfig();
             Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
@@ -59,24 +63,11 @@ public class ServiceProxy implements InvocationHandler {
                 throw new RuntimeException("暂无服务地址");
             }
             ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
-
-            try (HttpResponse httpResponse = HttpRequest.post(selectedServiceMetaInfo.getServiceAddress())
-                    .body(bodyBytes)
-                    .execute()) {
-                result = httpResponse.bodyBytes();
-            }
-            RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
+            // 发送 TCP 请求
+            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
             return rpcResponse.getData();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException("调用失败");
         }
-        return null;
-    }
-
-    private String jointPostUri() {
-        // "http://localhost:8080"
-        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
-        StringBuffer sb = new StringBuffer();
-        return sb.append("http://").append(rpcConfig.getServerHost()).append(":").append(rpcConfig.getServerPort()).toString();
     }
 }
